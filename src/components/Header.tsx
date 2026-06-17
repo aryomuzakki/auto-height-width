@@ -30,6 +30,13 @@ export default function Header() {
           >
             About
           </Link>
+          <Link
+            to="/auto-height-width"
+            className="nav-link"
+            activeProps={{ className: 'nav-link is-active' }}
+          >
+            Auto Height Width
+          </Link>
           <a
             href="https://tanstack.com/start/latest/docs/framework/react/overview"
             className="nav-link"

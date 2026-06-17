@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AutoHeightWidthIndexRouteImport } from './routes/auto-height-width/index'
 import { Route as DemoMcpTodosRouteImport } from './routes/demo/mcp-todos'
 import { Route as DemoApiMcpTodosRouteImport } from './routes/demo/api.mcp-todos'
 
@@ -30,6 +31,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AutoHeightWidthIndexRoute = AutoHeightWidthIndexRouteImport.update({
+  id: '/auto-height-width/',
+  path: '/auto-height-width/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DemoMcpTodosRoute = DemoMcpTodosRouteImport.update({
   id: '/demo/mcp-todos',
   path: '/demo/mcp-todos',
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/mcp': typeof McpRoute
   '/demo/mcp-todos': typeof DemoMcpTodosRoute
+  '/auto-height-width/': typeof AutoHeightWidthIndexRoute
   '/demo/api/mcp-todos': typeof DemoApiMcpTodosRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/mcp': typeof McpRoute
   '/demo/mcp-todos': typeof DemoMcpTodosRoute
+  '/auto-height-width': typeof AutoHeightWidthIndexRoute
   '/demo/api/mcp-todos': typeof DemoApiMcpTodosRoute
 }
 export interface FileRoutesById {
@@ -61,19 +69,33 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/mcp': typeof McpRoute
   '/demo/mcp-todos': typeof DemoMcpTodosRoute
+  '/auto-height-width/': typeof AutoHeightWidthIndexRoute
   '/demo/api/mcp-todos': typeof DemoApiMcpTodosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/mcp' | '/demo/mcp-todos' | '/demo/api/mcp-todos'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/mcp'
+    | '/demo/mcp-todos'
+    | '/auto-height-width/'
+    | '/demo/api/mcp-todos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/mcp' | '/demo/mcp-todos' | '/demo/api/mcp-todos'
+  to:
+    | '/'
+    | '/about'
+    | '/mcp'
+    | '/demo/mcp-todos'
+    | '/auto-height-width'
+    | '/demo/api/mcp-todos'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/mcp'
     | '/demo/mcp-todos'
+    | '/auto-height-width/'
     | '/demo/api/mcp-todos'
   fileRoutesById: FileRoutesById
 }
@@ -82,6 +104,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   McpRoute: typeof McpRoute
   DemoMcpTodosRoute: typeof DemoMcpTodosRoute
+  AutoHeightWidthIndexRoute: typeof AutoHeightWidthIndexRoute
   DemoApiMcpTodosRoute: typeof DemoApiMcpTodosRoute
 }
 
@@ -108,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auto-height-width/': {
+      id: '/auto-height-width/'
+      path: '/auto-height-width'
+      fullPath: '/auto-height-width/'
+      preLoaderRoute: typeof AutoHeightWidthIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/demo/mcp-todos': {
       id: '/demo/mcp-todos'
       path: '/demo/mcp-todos'
@@ -130,6 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   McpRoute: McpRoute,
   DemoMcpTodosRoute: DemoMcpTodosRoute,
+  AutoHeightWidthIndexRoute: AutoHeightWidthIndexRoute,
   DemoApiMcpTodosRoute: DemoApiMcpTodosRoute,
 }
 export const routeTree = rootRouteImport
